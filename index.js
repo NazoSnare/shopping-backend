@@ -22,6 +22,12 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//initialize passport module for authentication
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
 //set static folder for assets used in admin page
 app.use(express.static(path.join(__dirname, 'public')));
 

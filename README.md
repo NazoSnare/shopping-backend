@@ -32,7 +32,7 @@ feel free to access [my portfolio] (http://malcy.cf).
 >
 
 * GET /api/v1/transactions ---> view sorted transactions by user's id in token's user id (`transaction.user._id ==token.user._id`)
-* GET /api/v1/transactions/all ---> view sorted transactions by all users
+* GET /api/v1/transactions/all ---> view sorted transactions by all users (`only admin user can access`)
 * POST /api/v1/transactions/add ---> add transaction to transactions passing a user and product or user and amount
 > ## **served through backend UI**  
 * GET /admin/products/ ---> view all products if authenticated as user admin

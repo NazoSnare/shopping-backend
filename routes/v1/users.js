@@ -70,4 +70,10 @@ router.get('/profile', passport.authenticate('jwt', {session:false}),(req, res, 
   res.json({user:req.user});
 });
 
+
+router.post('/topup', passport.authenticate('jwt', {session:false}),(req, res, next) => {
+  // res.json({user:req.user});
+  res.send('topup');
+});
+
 module.exports = router;

@@ -24,11 +24,17 @@ feel free to access [my portfolio] (http://malcy.cf).
 * POST /api/v1/users/register ---> register a user
 * POST /api/v1/users/authenticate -->sign in and get token
 * GET /api/v1/users/profile ---> get profile if signed in
-* GET /api/v1/users/transactions ---> view all transactions by user's id in body
 * POST /api/v1/users/topup ----> top up user balance with amount in body
-* GET /api/v1/products ---> view products
-* POST /api/v1/products/:id --> purchase a products by id
+>
+* GET /api/v1/products ---> view all products
+* POST /api/v1/products/add --> add a new product
 * GET /api/v1/products/:id ---> view a product by id
+>
+
+* GET /api/v1/transactions ---> view sorted transactions by user's id in token's user id (`transaction.user._id ==token.user._id`)
+* GET /api/v1/transactions/all ---> view sorted transactions by all users
+* POST /api/v1/transactions/add ---> add transaction to transactions passing a user and product or user and amount
+> ## **served through backend UI**  
 * GET /admin/products/ ---> view all products if authenticated as user admin
 * PUT /admin/products/:id -----> edit product by id if authenticated as admin
 * DELETE /admin/product/:id ----->delete product by id if I decided to add it

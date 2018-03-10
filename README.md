@@ -10,7 +10,7 @@ feel free to access [my portfolio](http://malcy.cf).
 > ## Prerequisites:
 * nodejs
 * npm
-+ internet connection
++ internet connection for **mlab** database mongodb `for consistency`
 >
 
 > ### **Steps to deploy:using terminal for mac/linux and git bash for windows**

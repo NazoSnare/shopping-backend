@@ -5,7 +5,7 @@ Nodejs backend for a simple assessment shopping system
 
 ### welcome to the repository
 
-feel free to access [my portfolio] (http://malcy.cf).
+feel free to access [my portfolio](http://malcy.cf).
 
 > ## Prerequisites:
 * nodejs

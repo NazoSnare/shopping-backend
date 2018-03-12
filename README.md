@@ -29,6 +29,7 @@ feel free to access [my portfolio](http://malcy.cf).
 >
 * GET /api/v1/products ---> view all products
 * POST /api/v1/products/add --> add a new product
+* POST /api/v1/products/purchase --> a protected route to purchase product on behalf of user
 * GET /api/v1/products/:id ---> view a product by id
 >
 
@@ -36,6 +37,5 @@ feel free to access [my portfolio](http://malcy.cf).
 * GET /api/v1/transactions/all ---> view sorted transactions by all users (`only admin user can access`)
 * POST /api/v1/transactions/add ---> add transaction to transactions passing a user and product or user and amount
 > ## **served through backend UI**  
-* GET /admin/products/ ---> view all products if authenticated as user admin
-* PUT /admin/products/:id -----> edit product by id if authenticated as admin
-* DELETE /admin/product/:id ----->delete product by id if I decided to add it
+* GET /admin/---> view all products if authenticated as user admin
+* POST /admin/products ---> add a new products if authenticated as user admin

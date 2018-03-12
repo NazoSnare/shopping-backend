@@ -37,7 +37,7 @@ router.post('/add', (req, res, next) => {
 
   });
 
-}//end of add products
+}); //end of add products
 
 router.get('/', (req, res, next) => {
      Product.getProducts((err, products) => {
@@ -59,7 +59,7 @@ router.get('/:id', (req,res,next) => {
         res.json({success:true, product:product});
       }
    });
-   
+
 });
 
 module.exports = router;

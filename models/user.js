@@ -38,6 +38,11 @@ module.exports.getUserByUsername= function(username, callback){
   User.findOne(query, callback);
 }
 
+module.exports.topupUser = function(id,newBalance, callback){
+  const query = {_id : id};
+  User.findOneAndUpdate(query, {$set: {balance: newBalance}}, {new:true},callback);
+}
+
 module.exports.addUser = function (newUser, callback){
    bcrypt.genSalt(10, (err, salt) => {
      bcrypt.hash(newUser.password, salt, (err, hash)=>{

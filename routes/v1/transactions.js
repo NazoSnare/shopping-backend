@@ -10,7 +10,13 @@ const env = require('../../config/.env');
 
 router.get('/', passport.authenticate('jwt', {session:false}),(req, res, next) => {
 //  res.json({user:req.user, transactions: req.user.transactions});
-res.send('transactions by tokenized user');
+Transaction.getTransactionsByUsername(req.user.username, (err, transactions) => {
+  if(err){
+    return res.json({success: false, msg: 'error getting transactions'});
+  }else{
+    res.json({success:true, transactions:transactions});
+  }
+});
 });
 
 router.get('/all', passport.authenticate('jwt', {session:false}),(req, res, next) => {

@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
+const Transaction = require('../../models/transaction');
 const env = require('../../config/.env');
 
 // route ---> /api/v1/users/x
@@ -73,7 +74,37 @@ router.get('/profile', passport.authenticate('jwt', {session:false}),(req, res, 
 
 router.post('/topup', passport.authenticate('jwt', {session:false}),(req, res, next) => {
   // res.json({user:req.user});
-  res.send('topup');
+  console.log(req.body.amount, req.body);
+  User.topupUser(req.user._id, req.user.balance+req.body.amount, (err, updatedUser) => {
+    if(err){
+      throw err;
+      res.json({ success:false, msg:err});
+    }else{
+      //add this transaction to transactions
+      let newTransaction = new Transaction({
+        user: req.user,
+        type: 'Top up',
+        data: {
+          amount:req.body.amount,
+          balanceBefore: req.user.balance-req.body.amount,
+          balanceAfter:req.user.balance,
+          date: new Date()
+        }
+      });
+
+      Transaction.addTransaction(newTransaction, (err, transaction)=> {
+         if(err){
+           res.json({success: false, msg: 'failed to complete transaction'});
+         }else{
+           res.json({success: true, msg: 'transaction successfully completed', updatedUser:updatedUser});
+         }
+
+      });//end Of add Transaction
+
+    }//end of adding transaction and balances
+  });
+
+
 });
 
 module.exports = router;

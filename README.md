@@ -21,6 +21,7 @@ feel free to access [my portfolio](http://malcy.cf).
 5. The frontend runs on a separate port and to allow flexibility through rest-api e.g mobile,watches and car apps are now possible
 
 # Routes :
+* UI http://localhost:3000/admin
 * POST /api/v1/users/register ---> register a user
 * POST /api/v1/users/authenticate -->sign in and get token
 * GET /api/v1/users/profile ---> get profile if signed in

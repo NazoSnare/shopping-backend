@@ -27,6 +27,7 @@
     "mongoose": "*",
     "morgan": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "passport-local": "^1.0.0"
   }
 }

@@ -1,7 +1,8 @@
 
 module.exports = {
    PORT: 3000,
-   database: 'mongodb://localhost:27017/shoppingsystem',
-   secret: 'my secret',
+   databaselocal: 'mongodb://localhost:27017/shoppingsystem',
+   database:'mongodb://malcom:12345@ds035816.mlab.com:35816/shoppingsystem',
+   secret: 'my secret'
 
 };

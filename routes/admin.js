@@ -27,16 +27,19 @@ router.post('/products', (req, res, next) => {
   });
 
     if(newProduct.price < 112){
-      newProduct.discount = 0;
+      newProduct.discount = newProduct.price*0;
+      newProduct.discountPercentage = 0;
     }
     else if(newProduct.price <= 115){
-      newProduct.discount = 0.25;
+      newProduct.discount =newProduct.price* 0.25;
+        newProduct.discountPercentage =25;
     }
     else{
-      newProduct.discount = 0.50;
+      newProduct.discount = newProduct.price*0.50;
+        newProduct.discountPercentage =50;
     }
 
-    newProduct.totalAmount = newProduct.price - (newProduct.price * newProduct.discount);
+    newProduct.totalAmount = newProduct.price -  newProduct.discount;
 
     Product.addProduct(newProduct, (err, product)=> {
        if(err){

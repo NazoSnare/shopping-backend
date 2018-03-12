@@ -85,8 +85,8 @@ router.post('/topup', passport.authenticate('jwt', {session:false}),(req, res, n
         type: 'Top up',
         data: {
           amount:req.body.amount,
-          balanceBefore: req.user.balance-req.body.amount,
-          balanceAfter:req.user.balance,
+          balanceBefore: req.user.balance,
+          balanceAfter:updatedUser.balance,
           date: new Date()
         }
       });

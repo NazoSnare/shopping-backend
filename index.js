@@ -29,6 +29,7 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
+
 //set static folder for assets used in admin page
 //set templates
 app.set('view engine', 'hbs');
@@ -47,6 +48,9 @@ db.once('open', () => {
 app.use('/api/v1', apiRouter);
 app.use('/admin', adminRouter);
 
+app.get('/', (req,res,next) => {
+  res.redirect('http://localhost:3000/admin');
+});
 app.listen(port, () =>{
   console.log(`Server is listening on http://localhost:${port}`)
 });

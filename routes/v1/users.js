@@ -73,8 +73,7 @@ router.get('/profile', passport.authenticate('jwt', {session:false}),(req, res, 
 
 
 router.post('/topup', passport.authenticate('jwt', {session:false}),(req, res, next) => {
-  // res.json({user:req.user});
-  console.log(req.body.amount, req.body);
+
   User.topupUser(req.user._id, req.user.balance+req.body.amount, (err, updatedUser) => {
     if(err){
       throw err;

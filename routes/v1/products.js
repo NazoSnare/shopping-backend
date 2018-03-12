@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 const Product = require('../../models/product');
+const Transaction = require('../../models/transaction');
 const env = require('../../config/.env');
 
 
@@ -38,6 +39,41 @@ router.post('/add', (req, res, next) => {
   });
 
 }); //end of add products
+
+router.post('/purchase', passport.authenticate('jwt', {session:false}),(req, res, next) => {
+  let user = req.user;
+  let amount = req.body.product.totalAmount;
+  User.purchaseProduct(req.user._id, req.user.balance-req.body.product.totalAmount, (err, updatedUser) => {
+    if(err){
+      throw err;
+      res.json({ success:false, msg:err});
+    }else{
+      //add this transaction to transactions
+      let newTransaction = new Transaction({
+        user: req.user,
+        type: 'Purchase',
+        data: {
+          amount: req.body.product.totalAmount,
+          product: req.body.product,
+          balanceBefore: req.user.balance,
+          balanceAfter: updatedUser.balance,
+          date: new Date()
+        }
+      });
+
+      Transaction.addTransaction(newTransaction, (err, transaction)=> {
+         if(err){
+           res.json({success: false, msg: 'failed to complete transaction'});
+         }else{
+           res.json({success: true, msg: 'transaction successfully completed', updatedUser:updatedUser});
+         }
+
+      });//end Of add Transaction
+
+    }//end of adding transaction and balances
+  });
+
+});
 
 router.get('/', (req, res, next) => {
      Product.getProducts((err, products) => {

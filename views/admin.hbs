@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shopping-admin</title>
+  <link rel="stylesheet" href="bootstrap3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap3/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand page-scroll" href="#">Shopping System</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="hidden">
+                      <a href="#page-top"></a>
+                  </li>
+                  <li >
+                      <a class="page-scroll" href="#">Home</a>
+                  </li>
+                  <li >
+                      <a class="page-scroll" href="#">products</a>
+                  </li>
+                  <li >
+                      <a class="page-scroll" href="#">Logout</a>
+                  </li>
+
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+
+  <header>
+
+  </header>
+<main>
+  <section id="welcome">
+    <div class="container">
+      <h1>Welcome to admin</h1>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+        <h1>Products</h1>
+        <div class="row">
+          <div class="col-sm-12 col-md-8 col-lg-6">
+            <form action="admin/products" method="post" class="form-inline">
+             <legend>
+               Add Product
+             </legend>
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text"  name="name" placeholder="Enter name" required >
+                </div>
+
+                <div class="form-group">
+                  <label>Price</label>
+                  <input type="number"  name="price" placeholder="Enter Price" required >
+                </div>
+
+                <input type="submit" class="btn btn-success" value="Add Product"/>
+            </form>
+            <hr />
+          </div>
+        </div>
+
+        <div class="row">
+          <h3>Current Products</h3>
+          <div>
+            {{#each products}}
+            <ul class="nav col-sm-12 col-md-6 col-lg-4">
+              <li>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                        Name: {{this.name}}
+                  </li>
+                  <li class="list-group-item">
+                        Price: R {{this.price}}
+                  </li>
+                  <li class="list-group-item">
+                        Discount: R {{this.discount}}
+                  </li>
+                  <li class="list-group-item">
+                      Total Price: R {{this.totalAmount}}
+                  </li>
+                </ul>
+              </li>
+
+        </ul>
+            {{/each}}
+          </div>
+        </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+<p>
+  Copyright 2018
+</p>
+</footer>
+<link rel="stylesheet" href="bootstrap3/js/jquery-1.11.1.js">
+  <link rel="stylesheet" href="bootstrap3/js/bootstrap.min.js">
+</body>
+
+</html>

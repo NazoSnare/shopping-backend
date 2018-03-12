@@ -18,14 +18,15 @@
   },
   "homepage": "https://github.com/NazoSnare/shopping-backend#readme",
   "dependencies": {
-    "express": "^4.16.2",
-    "mongoose": "*",
     "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
     "body-parser": "*",
+    "cors": "*",
+    "express": "^4.16.2",
+    "hbs": "^4.0.1",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "morgan": "*",
     "passport": "*",
-    "passport-jwt": "*",
-    "morgan": "*"
+    "passport-jwt": "*"
   }
 }

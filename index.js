@@ -8,9 +8,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
-
+const hbs = require('hbs');
 const env = require('./config/.env');
 const apiRouter = require('./routes/v1');
+const adminRouter = require('./routes/admin');
 
 let port = env.PORT;
 
@@ -29,7 +30,11 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 //set static folder for assets used in admin page
+//set templates
+app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 //connect database using mongoose
 mongoose.connect(env.database);
@@ -40,6 +45,7 @@ db.once('open', () => {
 });
 
 app.use('/api/v1', apiRouter);
+app.use('/admin', adminRouter);
 
 app.listen(port, () =>{
   console.log(`Server is listening on http://localhost:${port}`)

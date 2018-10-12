@@ -8,6 +8,8 @@ const Product = require('../../models/product');
 const Transaction = require('../../models/transaction');
 const env = require('../../config/.env');
 
+// www.domain.com/api/v1/transactions
+
 router.get('/', passport.authenticate('jwt', {session:false}),(req, res, next) => {
 //  res.json({user:req.user, transactions: req.user.transactions});
 Transaction.getTransactionsByUsername(req.user.username, (err, transactions) => {

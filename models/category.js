@@ -32,9 +32,9 @@ module.exports.addCategory = function (newCategory, callback) {
  * @param {*} callback  - the callback function to execute afterwards
  * @returns - a category with the id or null
  */
-module.exports.getcategoryById = function (categoryId, callback) {
+module.exports.getCategoryById = function (categoryId, callback) {
   const query = {
-    _id: productId
+    _id: categoryId
   };
 
   Category

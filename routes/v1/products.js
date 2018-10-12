@@ -9,25 +9,21 @@ const Product = require('../../models/product');
 const Transaction = require('../../models/transaction');
 const env = require('../../config/.env');
 
+//www.domain.com/api/v1/products
 
 //add new product
-router.post('/add', (req, res, next) => {
+router.post('/', (req, res, next) => {
   let newProduct = new Product({
     name: req.body.name,
-    price: req.body.price
+    brand: req.body.brand || '',
+    quantity: req.body.quantity || 0,
+    imageUrl: req.body.imageUrl || 0,
+    categories: req.body.categories,
+    price: req.body.price,
+    discount: req.body.discount,
+    totalAmount: req.body.totalAmount,
+    supplierData: req.body.supplierData
   });
-
-  if(newProduct.price < 112){
-    newProduct.discount = 0;
-  }
-  else if(newProduct.price <= 115){
-    newProduct.discount = 0.25;
-  }
-  else{
-    newProduct.discount = 0.50;
-  }
-
-  newProduct.totalAmount = newProduct.price - (newProduct.price * newProduct.discount);
 
   Product.addProduct(newProduct, (err, user)=> {
      if(err){
@@ -75,6 +71,7 @@ router.post('/purchase', passport.authenticate('jwt', {session:false}),(req, res
 
 });
 
+
 router.get('/', (req, res, next) => {
      Product.getProducts((err, products) => {
        if(err){
@@ -86,7 +83,7 @@ router.get('/', (req, res, next) => {
      });
 });
 
-router.get('/:id', (req,res,next) => {
+router.get('/single/:id', (req,res,next) => {
    let productId = req.params.id;
    Product.getProductById(productId, (err,product) => {
       if(err){

@@ -1,6 +1,6 @@
 # shopping-backend
 
-Nodejs backend for a simple assessment shopping system
+Nodejs backend for Miyas shop
 ============================
 
 ### welcome to the repository

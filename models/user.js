@@ -10,7 +10,8 @@ const UserSchema = mongoose.Schema({
   },
   username: {
     type: String,
-    required:true
+    required:true,
+    unique:true
   },
   email: {
     type: String,
@@ -23,19 +24,36 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  role: {
+    type: String,
+    required: true,
+    default: 'buyer'
+  },
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    required: false,
+    default: [],
+    ref: 'Order'
+  }]
 
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.getUserById = function(id, callback){
-  User.findById(id, callback);
+  User
+  .findById(id)
+  .populate('orders')
+  .exec(callback);
 }
 
 module.exports.getUserByUsername= function(username, callback){
   const query = {username : username};
-  User.findOne(query, callback);
+  User
+  .findOne(query)
+  .populate('orders')
+  .exec(callback);
 }
 
 module.exports.topupUser = function(id,newBalance, callback){

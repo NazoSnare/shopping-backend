@@ -6,6 +6,7 @@ const usersRouter = require('./v1/users');
 const productsRouter = require('./v1/products');
 const transactionsRouter = require('./v1/transactions');
 const categoriesRouter = require('./v1/categories');
+const ordersRouter = require('./v1/orders');
 
 // www.domain.com/api/v1
 router.get('/', (req, res, next) => {
@@ -27,6 +28,10 @@ router.use('/transactions', transactionsRouter);
 // www.domain.com/api/v1/categories
 router.use('/categories', categoriesRouter );
 //end of routing to categories
+
+// www.domain.com/api/v1/orders
+router.use('/orders', ordersRouter );
+//end of routing to orders
 
 // www.domain.com/api/v2/users will go to v2 folders' routes
 

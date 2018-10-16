@@ -10,20 +10,23 @@ const env = require('../../config/.env');
 // route ---> /api/v1/users/x
 
 //Register
-router.post('/register', (req, res, next) => {
+router.post('/', (req, res, next) => {
   let newUser = new User({
     name: req.body.name,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
-    balance: req.body.balance
+    balance: req.body.balance,
+    wallet: req.body.wallet,
+    role: req.body.role || 'buyer',
+    orders: []
   });
 
   User.addUser(newUser, (err, user)=> {
      if(err){
        res.json({success: false, msg: 'failed to register user'});
      }else{
-       res.json({success: true, msg: 'User registered'});
+       res.json({success: true, msg: 'User registered', user});
      }
 
   });
@@ -55,7 +58,10 @@ router.post('/authenticate', (req, res, next) => {
             name: user.name,
             email: user.email,
             balance: user.balance,
-            username: user.username
+            username: user.username,
+            wallet: user.wallet,
+            role: user.role,
+            orders: user.orders
           }
         });
 

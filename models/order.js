@@ -4,7 +4,8 @@ const env = require('../config/.env');
 const OrderSchema = mongoose.Schema({
     type: {
         type: String,
-        required: true
+        required: true,
+        default: 'delivery'
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,10 +17,17 @@ const OrderSchema = mongoose.Schema({
         required: true
     },
     deliveryAddress: {
-        type: mongoose.Schema.Types.ObjectId,
+       // type: mongoose.Schema.Types.ObjectId,
         required: true,
-         ref: 'Address'
-    }
+        type:Object
+       //  ref: 'Address'
+    },
+    products: [{
+        required:true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
+
 
 });
 
@@ -43,9 +51,17 @@ module.exports.addOrder = function (newOrder, callback) {
 module.exports.getOrderById = function (id, callback) {
     Order.findById(id)
     .populate('user')
-    .populate('deliveryAddress')
     .exec(callback);
 }
+
+module.exports.getOrders = function(callback){
+    Order.find({})
+    .populate('user')
+    .exec(callback);
+
+}
+
+
 
 module.exports.getOrdersByUsername = function (username, callback) {
     const query = {
@@ -54,6 +70,5 @@ module.exports.getOrdersByUsername = function (username, callback) {
 
     Order.find(query)
     .populate('user')
-    .populate('deliveryAddress')
     .exec(callback);
 }

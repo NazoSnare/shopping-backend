@@ -17,7 +17,7 @@ const ProductSchema = mongoose.Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
+    required: false,
     default: ''
   },
   categories: [{
@@ -84,6 +84,17 @@ module.exports.getProductById = function (productId, callback) {
 
 module.exports.getProducts = function (callback) {
   const query = {};
+  Product
+  .find(query)
+  .populate('categories')
+  .exec(callback);
+}
+
+module.exports.getProductsByCategory = function (category,callback){
+  const query = {
+    categories : mongoose.Types.ObjectId(category)
+  };
+  
   Product
   .find(query)
   .populate('categories')

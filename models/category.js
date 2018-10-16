@@ -38,8 +38,8 @@ module.exports.getCategoryById = function (categoryId, callback) {
   };
 
   Category
-  .findOne(query)
-  .exec(callback);
+    .findOne(query)
+    .exec(callback);
 }
 
 /**
@@ -51,6 +51,19 @@ module.exports.getCategoryById = function (categoryId, callback) {
 module.exports.getCategories = function (callback) {
   const query = {};
   Category
-  .find(query)
-  .exec(callback);
+    .find(query)
+    .exec(callback);
+}
+
+/**
+ * update a Category 
+ * 
+ * @param {*} categoryId 
+ * @param {*} updateObj 
+ * @param {*} callback 
+ */
+module.exports.updateCategory = function (categoryId, updateObj, callback) {
+  Category.findByIdAndUpdate(categoryId, updateObj, {
+    new: true
+  }, callback);
 }

@@ -17,19 +17,19 @@ router.post('/', (req, res, next) => {
     name: req.body.name,
     brand: req.body.brand || '',
     quantity: req.body.quantity || 0,
-    imageUrl: req.body.imageUrl || 0,
-    categories: req.body.categories,
+    imageUrl: req.body.imageUrl || '',
+    categories: req.body.categories ||[],
     price: req.body.price,
-    discount: req.body.discount,
-    totalAmount: req.body.totalAmount,
-    supplierData: req.body.supplierData
+    discount: req.body.discount ||0,
+    totalAmount: req.body.price * (1*(req.body.discount/100)),
+    supplier: req.body.supplier || {}
   });
 
-  Product.addProduct(newProduct, (err, user)=> {
+  Product.addProduct(newProduct, (err, product)=> {
      if(err){
        res.json({success: false, msg: 'failed to add product'});
      }else{
-       res.json({success: true, msg: 'Product added successfully'});
+       res.json({success: true, msg: 'Product added successfully', product});
      }
 
   });

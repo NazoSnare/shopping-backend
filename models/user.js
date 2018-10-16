@@ -19,11 +19,16 @@ const UserSchema = mongoose.Schema({
   },
   balance: {
     type: Number,
-    required: true
+    required: true,
+    default: 0.00
   },
   password: {
     type: String,
     required: true
+  },
+  wallet: {
+    type: String,
+    required:false
   },
   role: {
     type: String,

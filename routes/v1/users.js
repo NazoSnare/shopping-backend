@@ -11,17 +11,17 @@ const env = require('../../config/.env');
 
 //Register
 router.post('/', (req, res, next) => {
+  console.log(req.body);
   let newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password,
-    balance: req.body.balance,
-    wallet: req.body.wallet,
-    role: req.body.role || 'buyer',
+    name: req.body.newUser.name,
+    email: req.body.newUser.email,
+    username: req.body.newUser.username,
+    password: req.body.newUser.password,
+    balance: req.body.newUser.balance,
+    wallet: req.body.newUser.wallet,
+    role: req.body.newUser.role || 'buyer',
     orders: []
   });
-
   User.addUser(newUser, (err, user)=> {
      if(err){
        res.json({success: false, msg: 'failed to register user'});
